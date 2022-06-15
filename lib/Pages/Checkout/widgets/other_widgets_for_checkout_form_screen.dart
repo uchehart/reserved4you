@@ -157,8 +157,17 @@ class DeliveryTimeWidget extends StatelessWidget {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: amount.length,
-                  itemBuilder: (context, index) => selectTipWidget(
-                      amount: amount[index].toString(), isSelected: true)),
+                  itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          ctr.selectTipMethod(amount[index].toString());
+                        },
+                        child: Obx(
+                          () => selectTipWidget(
+                              amount: amount[index].toString(),
+                              isSelected: ctr.selectTip.value ==
+                                  amount[index].toString()),
+                        ),
+                      )),
             ),
             const SizedBox(
               height: 23,
@@ -353,16 +362,15 @@ class DeliveryTimeWidget extends StatelessWidget {
                 itemBuilder: (BuildContext ctx, index) {
                   return GestureDetector(
                       onTap: () {
-                        debugPrint('==================ß');
                         ctr.selectedPaymentMethod(
-                          paymentTypes[index].toString(),
+                          paymentTypes[index].name.toString(),
                         );
                       },
                       child: Obx(
                         () => paymentTypeWidget(
                             data: paymentTypes[index],
-                            istapped: ctr.selectTip.value ==
-                                paymentTypes[index].toString()),
+                            istapped: ctr.selectedPaymentMethod.value ==
+                                paymentTypes[index].name.toString()),
                       ));
                 }),
             const SizedBox(

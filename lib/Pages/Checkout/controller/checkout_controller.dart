@@ -10,6 +10,10 @@ class CheckoutController extends GetxController {
   }
 
   selectTipMethod(String id) {
-    selectTip.value = id;
+    if (selectTip.value != id) {
+      selectTip.value = id;
+    } else if (selectTip.value == id) {
+      selectTip.value = '';
+    }
   }
 }
