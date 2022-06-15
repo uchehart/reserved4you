@@ -1,12 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-// ignore_for_file: prefer_const_constructors
-class FinalCheckoutScreen extends StatelessWidget {
-  const FinalCheckoutScreen({Key? key}) : super(key: key);
+import 'checkout_entry_screen.dart';
+
+class CheckoutOrderConfirmationScreen extends StatelessWidget {
+  const CheckoutOrderConfirmationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: GestureDetector(
+          onTap: () {
+            Get.offAll(const CheckoutHomeScreen());
+          },
+          child: Container(
+              width: 402,
+              height: 77.65,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(13),
+                  topRight: Radius.circular(13),
+                  bottomLeft: Radius.circular(0),
+                  bottomRight: Radius.circular(0),
+                ),
+                color: Color(0xffe14942),
+              ),
+              child: const Center(
+                child: Text(
+                  "Bestatigen",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: "Campton",
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ))),
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
@@ -26,17 +57,17 @@ class FinalCheckoutScreen extends StatelessWidget {
       body: ListView(
         children: [
           checkoutBanner(),
-          SizedBox(height: 26),
+          const SizedBox(height: 26),
           otherCheckoutDetails(
               labelText: 'Restaurant Name', isResturantName: true),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           otherCheckoutDetails(
               labelText: 'Payment Method', isPaymentMethod: true),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           otherCheckoutDetails(labelText: 'Amount', isAmount: true),
-          SizedBox(height: 14),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+          const SizedBox(height: 14),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
             child: Text(
               "Buchungsdetails",
               style: TextStyle(
@@ -48,34 +79,9 @@ class FinalCheckoutScreen extends StatelessWidget {
             ),
           ),
           detailsWithImage(),
-          SizedBox(height: 38),
+          const SizedBox(height: 38),
           finalPriceDetail(),
-          SizedBox(height: 38),
-          Container(
-            width: 402,
-            height: 77.65,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(13),
-                topRight: Radius.circular(13),
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0),
-              ),
-              color: Color(0xffe14942),
-            ),
-            child: Center(
-              child: Text(
-                "Bestatigen",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: "Campton",
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          )
+          const SizedBox(height: 38),
         ],
       ),
     );
@@ -87,13 +93,13 @@ class FinalCheckoutScreen extends StatelessWidget {
       height: 59.74,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
-        color: Color(0xfffdf5ef),
+        color: const Color(0xfffdf5ef),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           RichText(
-              text: TextSpan(children: const [
+              text: const TextSpan(children: [
             TextSpan(
               text: "Bezahlt ",
               style: TextStyle(
@@ -113,10 +119,10 @@ class FinalCheckoutScreen extends StatelessWidget {
               ),
             ),
           ])),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 "Zahlunsmethode",
                 style: TextStyle(
@@ -138,7 +144,7 @@ class FinalCheckoutScreen extends StatelessWidget {
 
   Container detailsWithImage() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       width: 366.62,
       height: 117.49,
       decoration: BoxDecoration(
@@ -146,13 +152,13 @@ class FinalCheckoutScreen extends StatelessWidget {
           color: const Color(0xff7b7e86),
           width: 0.4,
         ),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(9),
           topRight: Radius.circular(9),
           bottomLeft: Radius.circular(9),
           bottomRight: Radius.circular(9),
         ),
-        color: Color(0xfff9f9fb),
+        color: const Color(0xfff9f9fb),
       ),
       child: Stack(children: [
         Positioned(
@@ -164,10 +170,10 @@ class FinalCheckoutScreen extends StatelessWidget {
                 Container(
                   width: 138.29,
                   height: 95.02,
-                  margin: EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 10, left: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Color(0x0c000000),
                         blurRadius: 20,
@@ -175,14 +181,15 @@ class FinalCheckoutScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: FlutterLogo(size: 95.01734924316406),
+                  child: Image.asset(
+                      'assets/images/Checkout Screens/testImage.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 16,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       "Chicken Pizza",
                       style: TextStyle(
@@ -212,7 +219,7 @@ class FinalCheckoutScreen extends StatelessWidget {
           child: Container(
             width: 27.87,
             height: 24.52,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(0),
                 topRight: Radius.circular(9),
@@ -221,7 +228,7 @@ class FinalCheckoutScreen extends StatelessWidget {
               ),
               color: Color(0xffe14942),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 "3",
                 style: TextStyle(
@@ -258,7 +265,7 @@ class FinalCheckoutScreen extends StatelessWidget {
             children: [
               Text(
                 labelText,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xffa0a0a0),
                   fontSize: 15,
                   fontFamily: "Campton",
@@ -266,7 +273,7 @@ class FinalCheckoutScreen extends StatelessWidget {
                 ),
               ),
               if (isResturantName)
-                Text(
+                const Text(
                   "893 Ryotei",
                   textAlign: TextAlign.right,
                   style: TextStyle(
@@ -277,7 +284,7 @@ class FinalCheckoutScreen extends StatelessWidget {
                   ),
                 ),
               if (isAmount)
-                Text(
+                const Text(
                   "15 £",
                   style: TextStyle(
                     color: Color(0xffe14942),
@@ -285,7 +292,10 @@ class FinalCheckoutScreen extends StatelessWidget {
                     fontFamily: "Campton",
                     fontWeight: FontWeight.w600,
                   ),
-                )
+                ),
+              if (isPaymentMethod)
+                SvgPicture.asset(
+                    'assets/images/Checkout Screens/masterCard.svg')
             ],
           ),
         ),
@@ -293,8 +303,8 @@ class FinalCheckoutScreen extends StatelessWidget {
     );
   }
 
-  Container checkoutBanner() {
-    return Container(
+  SizedBox checkoutBanner() {
+    return SizedBox(
       height: 200,
       // color: Colors.red,
       child: Stack(
@@ -315,7 +325,7 @@ class FinalCheckoutScreen extends StatelessWidget {
                   ),
                 ],
                 borderRadius: BorderRadius.circular(10),
-                color: Color(0xff5dc761).withOpacity(0.1),
+                color: const Color(0xff5dc761).withOpacity(0.1),
               ),
               child: Column(
                 children: const [
@@ -373,14 +383,14 @@ class FinalCheckoutScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                    color: Color(0xffeffaf0),
+                    color: const Color(0xffeffaf0),
                     width: 2,
                   ),
-                  color: Color(0xfffdfdfd),
+                  color: const Color(0xfffdfdfd),
                 ),
                 child: Center(
                   child: RichText(
-                      text: TextSpan(children: const [
+                      text: const TextSpan(children: [
                     TextSpan(
                       text: "Deine Buchungs - ID:",
                       style: TextStyle(fontSize: 14, color: Colors.black45),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:reserved4you/Pages/splashView.dart';
-import 'package:reserved4you/Pages/Authentication/Login/LoginView.dart';
-import 'package:reserved4you/Pages/DashBoard/DashBoardView.dart';
 import 'package:get/get.dart';
+
+import 'Pages/Checkout/screens/checkout_entry_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +27,26 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           //  primarySwatch: Colors.blue,
           ),
-      home: DashBoardView(),
+      // home: DashBoardView(),
+      home: const GoToCheckoutProcess(),
+    );
+  }
+}
+
+class GoToCheckoutProcess extends StatelessWidget {
+  const GoToCheckoutProcess({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Go to Checkout Process'),
+          onPressed: () {
+            Get.to(const CheckoutHomeScreen());
+          },
+        ),
+      ),
     );
   }
 }
