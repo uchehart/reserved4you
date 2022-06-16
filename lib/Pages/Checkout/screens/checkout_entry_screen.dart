@@ -17,7 +17,7 @@ class CheckoutHomeScreen extends StatelessWidget {
               Get.to(CheckoutFormScreen());
             },
             child: Container(
-                width: 402,
+                width: double.infinity,
                 height: 77.65,
                 padding: EdgeInsets.all(16),
                 decoration: const BoxDecoration(
@@ -139,7 +139,7 @@ class CheckoutHomeScreen extends StatelessWidget {
           child: Column(children: [
             SizedBox(height: 20),
             Container(
-              width: 362.35,
+              width: double.infinity,
               height: 172.05,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -158,7 +158,7 @@ class CheckoutHomeScreen extends StatelessWidget {
               ),
               child: Column(children: [
                 Container(
-                  width: 360,
+                  width: double.infinity,
                   height: 115,
                   padding: EdgeInsets.all(9),
                   decoration: BoxDecoration(
@@ -254,7 +254,7 @@ class CheckoutHomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Container(
-              width: 362,
+             
               height: 147,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),

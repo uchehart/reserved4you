@@ -15,7 +15,7 @@ class CheckoutFormScreen extends StatelessWidget {
             ctr.movetoOtherScreens();
           },
           child: Container(
-              width: 402,
+              width: double.infinity,
               height: 77.65,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -91,11 +91,12 @@ class CheckoutFormScreen extends StatelessWidget {
               height: 15,
             ),
             Container(
-              width: 395,
+              width: double.infinity,
               height: 123.57,
               padding: const EdgeInsets.only(top: 25, left: 30, right: 30),
               color: const Color(0xfffdf5ef),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   checkoutCircles(textlabel: 'Booking Summary', isFirst: true),
                   checkoutCircles(
@@ -128,16 +129,18 @@ Widget checkoutCircles({
   bool? isFirst = false,
 }) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 20,
+            height: 16,
           ),
           if (!isFirst!)
             Container(
               padding: const EdgeInsets.only(top: 25),
-              height: 2,
+              height: 1.5,
               width: 52,
               color: !isReached!
                   ? const Color(0xffe2e0e1)
@@ -174,7 +177,7 @@ Widget checkoutCircles({
             height: 7,
           ),
           SizedBox(
-            width: 60.04,
+            width: 65.04,
             height: 28.13,
             child: Text(
               textlabel ?? '',

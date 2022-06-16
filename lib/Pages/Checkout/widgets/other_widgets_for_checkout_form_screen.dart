@@ -371,7 +371,7 @@ class DeliveryTimeWidget extends StatelessWidget {
                 itemBuilder: (BuildContext ctx, index) {
                   return GestureDetector(
                       onTap: () {
-                        ctr.selectedPaymentMethod(
+                        ctr.selectPaymentMethod(
                           paymentTypes[index].name.toString(),
                         );
                       },
@@ -564,6 +564,7 @@ class FormFields extends StatelessWidget {
           Row(
             children: const [
               AppInput(
+                prefixIcon: Icon(Icons.account_circle_outlined),
                 width: 150,
                 hintText: 'First name',
               ),
@@ -571,6 +572,7 @@ class FormFields extends StatelessWidget {
                 width: 20,
               ),
               AppInput(
+                prefixIcon: Icon(Icons.account_circle_outlined),
                 width: 150,
                 hintText: 'Last name',
               )
@@ -580,44 +582,53 @@ class FormFields extends StatelessWidget {
             height: 14,
           ),
           const AppInput(
+            prefixIcon: Icon(Icons.email_outlined),
             hintText: 'Email address',
           ),
           const SizedBox(
             height: 14,
           ),
           const AppInput(
+            prefixIcon: Icon(Icons.phone_outlined),
             hintText: 'Phone number',
           ),
           const SizedBox(
             height: 14,
           ),
           AppInput(
+            prefixIcon: const Icon(Icons.location_on_outlined),
             hintText: 'Address',
-            suffixIcon: Align(
-              alignment: Alignment.centerRight,
-              child: SizedBox(
+            suffixIcon: InkWell(
+              onTap: () {},
+              child: Container(
+                margin: const EdgeInsets.only(right: 10, top: 5, bottom: 5),
+                padding: const EdgeInsets.only(left: 10),
                 width: 87,
                 height: 32,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color(0xffe14942),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          side: const BorderSide(color: Colors.red))),
-                  child: Row(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color(0xffe14942),
+                ),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
+                      Icon(
+                        Icons.location_on_outlined,
+                        size: 12,
+                        color: Colors.white,
+                      ),
                       Text(
-                        "Old addres",
+                        "Old address",
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Color(0xfffefeff),
                           fontSize: 10,
                         ),
                       ),
-                    ],
-                  ),
-                ),
+                      SizedBox(
+                        width: 5,
+                      )
+                    ]),
               ),
             ),
           ),
@@ -627,6 +638,7 @@ class FormFields extends StatelessWidget {
           Row(
             children: const [
               AppInput(
+                prefixIcon: Icon(Icons.tag_outlined),
                 width: 150,
                 hintText: 'Postal code',
               ),
@@ -634,6 +646,7 @@ class FormFields extends StatelessWidget {
                 width: 20,
               ),
               AppInput(
+                prefixIcon: Icon(Icons.location_city_outlined),
                 width: 150,
                 hintText: 'City',
               ),
