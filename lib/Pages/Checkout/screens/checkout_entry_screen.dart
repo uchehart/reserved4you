@@ -75,6 +75,27 @@ class CheckoutHomeScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
           leadingWidth: 40,
+          actions: [
+            Container(
+                width: 33.71,
+                height: 32.20,
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x19000000),
+                      blurRadius: 20,
+                      offset: Offset(0, 8),
+                    ),
+                  ],
+                  color: Color(0xffe14942),
+                ),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ))
+          ],
           leading: GestureDetector(
             onTap: () {
               Get.back();
@@ -313,8 +334,21 @@ class CheckoutHomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 19,
                 ),
-                const Divider(
-                  height: 2,
+                SizedBox(
+                  height: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: const [
+                          Colors.white,
+                          Colors.black,
+                          Colors.white
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 12,

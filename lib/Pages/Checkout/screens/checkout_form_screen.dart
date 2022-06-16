@@ -1,40 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:reserved4you/Pages/Checkout/controller/checkout_controller.dart';
 
 import '../widgets/other_widgets_for_checkout_form_screen.dart';
-import 'checkout_order_confirmation.dart';
 
-class CheckoutFormScreen extends StatefulWidget {
-  const CheckoutFormScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CheckoutFormScreen> createState() => _CheckoutFormScreenState();
-}
-
-class _CheckoutFormScreenState extends State<CheckoutFormScreen> {
-  String s = '';
-
-  movetoOtherScreens() {
-    if (s.isEmpty) {
-      setState(() {
-        s = '1';
-      });
-      print('s is empty');
-    } else if (s == '1') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const CheckoutOrderConfirmationScreen()),
-      );
-    }
-  }
-
+class CheckoutFormScreen extends StatelessWidget {
+  CheckoutFormScreen({Key? key}) : super(key: key);
+  final ctr = Get.put(CheckoutController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: GestureDetector(
           onTap: () {
-            movetoOtherScreens();
+            ctr.movetoOtherScreens();
           },
           child: Container(
               width: 402,
@@ -50,7 +28,7 @@ class _CheckoutFormScreenState extends State<CheckoutFormScreen> {
               ),
               child: Center(
                 child: Text(
-                  s.isNotEmpty
+                  ctr.s.isNotEmpty
                       ? 'Proceed To Billing Detail'
                       : "Weiter zurZahlung",
                   textAlign: TextAlign.center,
@@ -106,31 +84,38 @@ class _CheckoutFormScreenState extends State<CheckoutFormScreen> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 15,
-          ),
-          Container(
-            width: 395,
-            height: 123.57,
-            padding: const EdgeInsets.only(top: 25, left: 30, right: 30),
-            color: const Color(0xfffdf5ef),
-            child: Row(
-              children: [
-                checkoutCircles(
-                  textlabel: 'Booking Summary',
-                ),
-                checkoutCircles(textlabel: 'Booking Summary'),
-                checkoutCircles(textlabel: 'Booking Summary', isLast: true),
-              ],
+      body: Obx(
+        () => Column(
+          children: [
+            const SizedBox(
+              height: 15,
             ),
-          ),
-          const SizedBox(height: 28),
-          if (s.isNotEmpty) DeliveryTimeWidget(),
-          if (s.isEmpty) const FormFields(),
-          // const SizedBox(height: 100),
-        ],
+            Container(
+              width: 395,
+              height: 123.57,
+              padding: const EdgeInsets.only(top: 25, left: 30, right: 30),
+              color: const Color(0xfffdf5ef),
+              child: Row(
+                children: [
+                  checkoutCircles(textlabel: 'Booking Summary', isFirst: true),
+                  checkoutCircles(
+                    textlabel: 'Billing Details',
+                    isCurrentProcess: ctr.isBillingDetailValid.value,
+                  ),
+                  checkoutCircles(
+                      textlabel: 'Complete Payment',
+                      isCurrentProcess: ctr.isCompletePayment.value,
+                      isReached: ctr.isCompletePayment.value),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 28),
+            if (ctr.s.isNotEmpty) DeliveryTimeWidget(),
+            if (ctr.s.isEmpty) const FormFields(),
+            // const SizedBox(height: 100),
+          ],
+        ),
       ),
     );
   }
@@ -139,20 +124,51 @@ class _CheckoutFormScreenState extends State<CheckoutFormScreen> {
 Widget checkoutCircles({
   bool? isCurrentProcess = false,
   String? textlabel = '',
-  bool? isPassed,
-  bool? isLast = false,
+  bool? isReached = true,
+  bool? isFirst = false,
 }) {
   return Row(
     children: [
       Column(
         children: [
-          Container(
-            height: 32,
-            width: 32,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xffe14942),
+          const SizedBox(
+            height: 20,
+          ),
+          if (!isFirst!)
+            Container(
+              padding: const EdgeInsets.only(top: 25),
+              height: 2,
+              width: 52,
+              color: !isReached!
+                  ? const Color(0xffe2e0e1)
+                  : const Color(0xffe14942),
+              // child: Text('sss'),
             ),
+        ],
+      ),
+      Column(
+        children: [
+          Container(
+            width: 33.71,
+            height: 32.15,
+            decoration: !isReached!
+                ? BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: const Color(0xffc4c4c4),
+                      width: 1,
+                    ),
+                  )
+                : BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: const Color(0xffe14942),
+                      width: 11,
+                    ),
+                    color: isCurrentProcess!
+                        ? Colors.white
+                        : const Color(0xffe14942),
+                  ),
           ),
           const SizedBox(
             height: 7,
@@ -163,29 +179,18 @@ Widget checkoutCircles({
             child: Text(
               textlabel ?? '',
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xffe14942),
+              style: TextStyle(
+                color: !isReached
+                    ? const Color(0xff9e9e9e)
+                    : isCurrentProcess!
+                        ? Colors.black
+                        : const Color(0xffe14942),
                 fontSize: 12,
                 fontFamily: "Campton",
                 fontWeight: FontWeight.w500,
               ),
             ),
           ),
-        ],
-      ),
-      Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          if (!isLast!)
-            Container(
-              padding: const EdgeInsets.only(top: 25),
-              height: 2,
-              width: 52,
-              color: const Color(0xffe14942),
-              // child: Text('sss'),
-            ),
         ],
       ),
     ],

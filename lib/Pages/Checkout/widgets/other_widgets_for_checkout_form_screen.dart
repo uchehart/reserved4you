@@ -299,8 +299,17 @@ class DeliveryTimeWidget extends StatelessWidget {
                 const SizedBox(
                   height: 19,
                 ),
-                const Divider(
-                  height: 2,
+                SizedBox(
+                  height: 1,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.white, Colors.black, Colors.white],
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 12,
