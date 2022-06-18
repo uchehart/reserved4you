@@ -3,6 +3,7 @@ import 'package:reserved4you/Pages/splashView.dart';
 import 'package:reserved4you/Pages/Authentication/Login/LoginView.dart';
 import 'package:reserved4you/Pages/DashBoard/DashBoardView.dart';
 import 'package:get/get.dart';
+// import 'package:reserved4you/hart/page1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
           // This is the theme of your application.
