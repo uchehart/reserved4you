@@ -48,6 +48,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   google_maps_flutter: ^2.0.4
   google_places_picker: ^3.0.2
+  carousel_slider: ^4.0.0
   #geocoder: ^0.2.1
 
   geocode: 1.0.1
@@ -112,6 +113,7 @@ flutter:
     - assets/images/Favourite/
     - assets/images/HomeView/
     - assets/images/DetailScreen/
+    - assets/images/onboarding/
     - assets/images/Confirmed/
     - assets/images/bottomnavbar/
     - assets/images/Profile/

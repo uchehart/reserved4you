@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'Pages/Checkout/screens/checkout_entry_screen.dart';
+import 'Pages/Onboarding/screens/onboarding_screen.dart';
+import 'Pages/Onboarding/screens/onbording_continuation_screen.dart';
+import 'Pages/Onboarding/screens/resturant_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -40,11 +44,31 @@ class GoToCheckoutProcess extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-          child: const Text('Go to Checkout Process'),
-          onPressed: () {
-            Get.to(const CheckoutHomeScreen());
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              child: const Text('Go to Onboarding Process'),
+              onPressed: () {
+                Get.to(const OnboardingScreen());
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              child: const Text('Go to Revenue Screen'),
+              onPressed: () {
+                Get.to(OnboardingContinuationScreen());
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Go to Resturant screen'),
+              onPressed: () {
+                Get.to(ResturantScreens());
+              },
+            ),
+          ],
         ),
       ),
     );
