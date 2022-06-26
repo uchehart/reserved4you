@@ -116,7 +116,7 @@ flutter:
     - assets/images/Profile/
     - assets/images/Settings/
     - assets/images/GiveFeedback/
-    - assets/images/hart/
+    - assets/images/Booking/
     - assets/
 
   fonts:
