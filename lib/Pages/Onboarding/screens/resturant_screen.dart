@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:reserved4you/Pages/Onboarding/controller/resturant_controller.dart';
+import 'package:reserved4you/Pages/Onboarding/widgets/portflio_tab_widgets/portfolio_tab_widgets.dart';
+
+import '../widgets/Bewtungen_widgets/bewtungen_widgets.dart';
 
 class ResturantScreens extends StatelessWidget {
   ResturantScreens({Key? key}) : super(key: key);
@@ -192,8 +195,17 @@ class ResturantScreens extends StatelessWidget {
         const SizedBox(
           height: 13,
         ),
+
         ///You can add a bool here and use  ctr.selectedTabName.value == tabName, to switch between other screens
-        AllegerimWidget()
+        Obx(
+          () => ctr.selectedTabName.value == tabName[1]
+              ? AllegerimWidget()
+              : ctr.selectedTabName.value == tabName[2]
+                  ? PortfolioTabWidgets()
+                  : ctr.selectedTabName.value == tabName[3]
+                      ? BewtungenWidgets()
+                      : AllegerimWidget(),
+        )
       ]),
     );
   }
@@ -235,26 +247,6 @@ class ResturantScreens extends StatelessWidget {
               )
             ],
           );
-  }
-
-  Container starRating({bool isSelected = false}) {
-    return Container(
-      width: 22.05,
-      height: 22.05,
-      margin: const EdgeInsets.only(right: 5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(
-          color: isSelected ? const Color(0xfffcbe56) : const Color(0xffa4a5a7),
-          width: 0.50,
-        ),
-      ),
-      child: Icon(
-        Icons.star_rounded,
-        size: 18,
-        color: isSelected ? const Color(0xfffcbe56) : const Color(0xffa4a5a7),
-      ),
-    );
   }
 
   SizedBox backgroundAndAvatarImages() {
@@ -1010,4 +1002,24 @@ class AllegerimWidget extends StatelessWidget {
       ]),
     );
   }
+}
+
+Container starRating({bool isSelected = false}) {
+  return Container(
+    width: 22.05,
+    height: 22.05,
+    margin: const EdgeInsets.only(right: 5),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(4),
+      border: Border.all(
+        color: isSelected ? const Color(0xfffcbe56) : const Color(0xffa4a5a7),
+        width: 0.50,
+      ),
+    ),
+    child: Icon(
+      Icons.star_rounded,
+      size: 18,
+      color: isSelected ? const Color(0xfffcbe56) : const Color(0xffa4a5a7),
+    ),
+  );
 }
